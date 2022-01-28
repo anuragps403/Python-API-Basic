@@ -4,8 +4,8 @@ from fastapi.param_functions import Body
 from pydantic import BaseModel
 from random import randrange
 
-from pydantic.errors import EnumError
-from starlette.status import HTTP_204_NO_CONTENT
+# from pydantic.errors import EnumError
+
 
 app = FastAPI()
 
@@ -73,7 +73,7 @@ def get_post(id: int):
     return {"post_detail": post}
 
 
-@app.delete("/posts/{id}", status_code=HTTP_204_NO_CONTENT)
+@app.delete("/posts/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_post(id: int):
     # delete post
     # find the index in the array
@@ -85,7 +85,7 @@ def delete_post(id: int):
 
     my_posts.pop(index)
 
-    return Response(status_code=HTTP_204_NO_CONTENT)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @app.put("/posts/{id}", status_code=status.HTTP_202_ACCEPTED)
 def update_post(id: int, post: Post):
